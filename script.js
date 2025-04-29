@@ -84,15 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Add active class to clicked button
         const activeButton = document.querySelector(`[data-company="${companyId}"]`);
-        activeButton.classList.add('active');
+        if (activeButton) {
+            activeButton.classList.add('active');
+        }
 
         // Show corresponding pane
         const activePane = document.getElementById(companyId);
-        activePane.style.display = 'block';
-        // Use setTimeout to ensure display: block is applied before adding active class
-        setTimeout(() => {
-            activePane.classList.add('active');
-        }, 10);
+        if (activePane) {
+            activePane.style.display = 'block';
+            // Use setTimeout to ensure display: block is applied before adding active class
+            setTimeout(() => {
+                activePane.classList.add('active');
+            }, 10);
+        }
     }
 
     // Set default tab
