@@ -477,7 +477,7 @@ section h2 {
 .experience-card {
     background: white;
     border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
     overflow: hidden;
     transition: all 0.4s ease;
     max-width: 800px;
@@ -490,19 +490,19 @@ section h2 {
 .tab-btn.active[data-company="bjit-senior"] ~ .tab-content .tab-pane#bjit-senior .experience-card,
 .tab-btn.active[data-company="sony"] ~ .tab-content .tab-pane#sony .experience-card,
 .tab-btn.active[data-company="bjit-junior"] ~ .tab-content .tab-pane#bjit-junior .experience-card {
-    border-color: #007bff;
-    box-shadow: 0 15px 30px rgba(0, 123, 255, 0.1);
+    border-color: #4299e1;
+    box-shadow: 0 15px 30px rgba(66, 153, 225, 0.08);
 }
 
 .experience-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
 }
 
 .card-header {
     padding: 2rem;
-    background: linear-gradient(135deg, #007bff, #00bfff);
-    color: white;
+    background: linear-gradient(135deg, #ebf8ff, #bee3f8);
+    color: #2b6cb0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -517,7 +517,7 @@ section h2 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(45deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
     z-index: 1;
 }
 
@@ -531,6 +531,7 @@ section h2 {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    color: #2b6cb0;
 }
 
 .company-meta {
@@ -542,20 +543,22 @@ section h2 {
 .company {
     font-size: 1.1rem;
     opacity: 0.9;
+    color: #2c5282;
 }
 
 .date {
     font-size: 0.9rem;
     opacity: 0.8;
     padding: 0.3rem 0.8rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 15px;
+    color: #2c5282;
 }
 
 .company-logo {
     width: 60px;
     height: 60px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -564,6 +567,7 @@ section h2 {
     position: relative;
     z-index: 2;
     transition: all 0.3s ease;
+    color: #2b6cb0;
 }
 
 .tab-btn.active[data-company="braincraft"] ~ .tab-content .tab-pane#braincraft .company-logo,
@@ -571,12 +575,12 @@ section h2 {
 .tab-btn.active[data-company="sony"] ~ .tab-content .tab-pane#sony .company-logo,
 .tab-btn.active[data-company="bjit-junior"] ~ .tab-content .tab-pane#bjit-junior .company-logo {
     transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.7);
 }
 
 .card-body {
     padding: 2rem;
-    position: relative;
+    background: #f8fafc;
 }
 
 .responsibilities {
@@ -584,7 +588,7 @@ section h2 {
 }
 
 .responsibilities h4 {
-    color: #333;
+    color: #2d3748;
     font-size: 1.2rem;
     margin-bottom: 1rem;
     font-weight: 600;
@@ -600,7 +604,7 @@ section h2 {
     transform: translateY(-50%);
     width: 4px;
     height: 70%;
-    background: #007bff;
+    background: #4299e1;
     border-radius: 2px;
 }
 
@@ -615,7 +619,7 @@ section h2 {
     align-items: flex-start;
     gap: 1rem;
     margin-bottom: 1rem;
-    color: #666;
+    color: #4a5568;
     transition: all 0.3s ease;
 }
 
@@ -624,7 +628,7 @@ section h2 {
 }
 
 .responsibilities li i {
-    color: #007bff;
+    color: #4299e1;
     font-size: 1.1rem;
     margin-top: 0.2rem;
     transition: all 0.3s ease;
@@ -635,7 +639,7 @@ section h2 {
 }
 
 .tech-stack h4 {
-    color: #333;
+    color: #2d3748;
     font-size: 1.2rem;
     margin-bottom: 1rem;
     font-weight: 600;
@@ -651,7 +655,7 @@ section h2 {
     transform: translateY(-50%);
     width: 4px;
     height: 70%;
-    background: #007bff;
+    background: #4299e1;
     border-radius: 2px;
 }
 
@@ -662,19 +666,19 @@ section h2 {
 }
 
 .tech-tags span {
-    background: #f0f0f0;
+    background: #edf2f7;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
-    color: #666;
+    color: #4a5568;
     transition: all 0.3s ease;
 }
 
 .tech-tags span:hover {
-    background: #007bff;
+    background: #4299e1;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
 }
 
 /* Projects Section */
