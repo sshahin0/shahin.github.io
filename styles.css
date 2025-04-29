@@ -260,11 +260,13 @@ section h2 {
 .experience {
     background-color: #f8f9fa;
     padding: 5rem 1rem;
+    position: relative;
 }
 
 .experience-tabs {
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 .commit-chain {
@@ -363,10 +365,11 @@ section h2 {
 .tab-pane {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: all 0.4s ease;
     position: absolute;
     width: 100%;
     display: none;
+    transform: translateY(20px);
 }
 
 .tab-pane.active {
@@ -374,6 +377,7 @@ section h2 {
     visibility: visible;
     position: relative;
     display: block;
+    transform: translateY(0);
 }
 
 .experience-card {
@@ -381,9 +385,19 @@ section h2 {
     border-radius: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.4s ease;
     max-width: 800px;
     margin: 0 auto;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.tab-btn.active[data-company="braincraft"] ~ .tab-content .tab-pane#braincraft .experience-card,
+.tab-btn.active[data-company="bjit-senior"] ~ .tab-content .tab-pane#bjit-senior .experience-card,
+.tab-btn.active[data-company="sony"] ~ .tab-content .tab-pane#sony .experience-card,
+.tab-btn.active[data-company="bjit-junior"] ~ .tab-content .tab-pane#bjit-junior .experience-card {
+    border-color: #007bff;
+    box-shadow: 0 15px 30px rgba(0, 123, 255, 0.1);
 }
 
 .experience-card:hover {
@@ -398,6 +412,24 @@ section h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    z-index: 1;
+}
+
+.company-info {
+    position: relative;
+    z-index: 2;
 }
 
 .company-info h3 {
@@ -435,10 +467,22 @@ section h2 {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active[data-company="braincraft"] ~ .tab-content .tab-pane#braincraft .company-logo,
+.tab-btn.active[data-company="bjit-senior"] ~ .tab-content .tab-pane#bjit-senior .company-logo,
+.tab-btn.active[data-company="sony"] ~ .tab-content .tab-pane#sony .company-logo,
+.tab-btn.active[data-company="bjit-junior"] ~ .tab-content .tab-pane#bjit-junior .company-logo {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .card-body {
     padding: 2rem;
+    position: relative;
 }
 
 .responsibilities {
@@ -450,6 +494,20 @@ section h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     font-weight: 600;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.responsibilities h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: #007bff;
+    border-radius: 2px;
 }
 
 .responsibilities ul {
@@ -464,12 +522,22 @@ section h2 {
     gap: 1rem;
     margin-bottom: 1rem;
     color: #666;
+    transition: all 0.3s ease;
+}
+
+.responsibilities li:hover {
+    transform: translateX(5px);
 }
 
 .responsibilities li i {
     color: #007bff;
     font-size: 1.1rem;
     margin-top: 0.2rem;
+    transition: all 0.3s ease;
+}
+
+.responsibilities li:hover i {
+    transform: scale(1.2);
 }
 
 .tech-stack h4 {
@@ -477,6 +545,20 @@ section h2 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     font-weight: 600;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.tech-stack h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: #007bff;
+    border-radius: 2px;
 }
 
 .tech-tags {
