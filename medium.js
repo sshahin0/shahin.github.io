@@ -92,6 +92,9 @@ function displayMediumPosts(posts, category = 'all') {
         
         article.innerHTML = `
             <div class="blog-list-content">
+                <div class="blog-thumbnail">
+                    <img src="${post.thumbnail || 'https://via.placeholder.com/100x100'}" alt="${post.title}">
+                </div>
                 <div class="blog-list-details">
                     <div class="blog-list-header">
                         <div class="blog-author">
