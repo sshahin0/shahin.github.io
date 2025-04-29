@@ -275,46 +275,30 @@ section h2 {
     padding: 2rem 0;
 }
 
-.commit-line {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: #e0e0e0;
-    z-index: 1;
-}
-
-/* Timeline Years */
-.timeline-years {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
+.year-timeline {
     display: flex;
     justify-content: space-between;
+    position: relative;
+    z-index: 2;
     padding: 0 2rem;
     max-width: 1000px;
-    margin: 0 auto;
-    z-index: 2;
-    transform: translateY(-50%);
+    margin: 0 auto 2rem;
 }
 
 .year-marker {
-    position: relative;
-    width: 60px;
-    text-align: center;
+    font-size: 0.8rem;
     color: #666;
-    font-size: 0.9rem;
-    font-weight: 500;
     opacity: 0.7;
     transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    padding-top: 0.5rem;
 }
 
 .year-marker::before {
     content: '';
     position: absolute;
-    top: -8px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
@@ -326,12 +310,22 @@ section h2 {
 .year-marker.active {
     color: #007bff;
     opacity: 1;
-    transform: translateY(-2px);
+    font-weight: 500;
 }
 
 .year-marker.active::before {
     background: #007bff;
     height: 12px;
+}
+
+.commit-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #e0e0e0;
+    z-index: 1;
 }
 
 .tab-buttons {
@@ -358,23 +352,7 @@ section h2 {
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
-    min-width: 150px;
-}
-
-.tab-year {
-    font-size: 0.8rem;
-    color: #666;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    text-align: center;
-    white-space: nowrap;
-    margin-top: 0.2rem;
-}
-
-.tab-btn.active .tab-year {
-    color: #007bff;
-    opacity: 1;
-    font-weight: 500;
+    min-width: 120px;
 }
 
 .commit-dot {
@@ -762,33 +740,15 @@ footer {
         font-size: 2rem;
     }
 
-    .timeline-years {
-        flex-direction: column;
-        top: 0;
-        left: 10px;
-        right: auto;
-        height: 100%;
-        padding: 0;
-        transform: none;
+    .year-timeline {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        padding: 0 1rem;
     }
 
     .year-marker {
-        width: auto;
-        text-align: left;
-        padding-left: 2rem;
-        margin: 1rem 0;
-    }
-
-    .year-marker::before {
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-        width: 8px;
-        height: 2px;
-    }
-
-    .year-marker.active::before {
-        width: 12px;
+        font-size: 0.7rem;
     }
 
     .tab-buttons {
@@ -812,12 +772,6 @@ footer {
         gap: 1rem;
         align-items: center;
         min-width: auto;
-    }
-
-    .tab-year {
-        margin-left: auto;
-        text-align: right;
-        margin-top: 0;
     }
 
     .tab-btn span {
