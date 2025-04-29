@@ -407,17 +407,20 @@ section h2 {
     position: relative;
     z-index: 2;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: -10px;
+    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .tab-btn.active .commit-dot {
     background: #4299e1;
     box-shadow: 0 0 0 6px rgba(66, 153, 225, 0.2);
-    transform: scale(1.1);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .tab-btn:hover .commit-dot {
-    transform: scale(1.2);
+    transform: translateY(-50%) scale(1.2);
 }
 
 .tab-btn span {
@@ -433,7 +436,7 @@ section h2 {
     max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top: 0.5rem;
+    margin-top: 1.5rem;
 }
 
 .tab-btn.active span {
@@ -843,7 +846,17 @@ footer {
     .commit-dot {
         width: 24px;
         height: 24px;
-        margin-top: 0;
+        position: relative;
+        top: auto;
+        transform: none;
+    }
+
+    .tab-btn.active .commit-dot {
+        transform: scale(1.1);
+    }
+
+    .tab-btn:hover .commit-dot {
+        transform: scale(1.2);
     }
 
     .card-header {
