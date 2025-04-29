@@ -361,22 +361,6 @@ section h2 {
     min-width: 120px;
 }
 
-.year-label {
-    font-size: 0.85rem;
-    color: #666;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    white-space: nowrap;
-}
-
-.tab-btn.active .year-label {
-    color: #007bff;
-    opacity: 1;
-    font-weight: 600;
-}
-
 .commit-dot {
     width: 20px;
     height: 20px;
@@ -807,12 +791,6 @@ footer {
         width: 100%;
         padding: 0.5rem;
         gap: 1rem;
-    }
-
-    .year-label {
-        margin-bottom: 0;
-        margin-right: 1rem;
-        text-align: left;
     }
 
     .tab-btn span {
