@@ -24,26 +24,39 @@ async function fetchMediumPosts() {
 function isPostInCategory(post, category) {
     const tags = post.categories.map(tag => tag.toLowerCase());
     
+    // Define category-specific tags
+    const androidTags = [
+        'android', 'kotlin', 'java', 'android development', 
+        'android app', 'android studio', 'mobile development'
+    ];
+    
+    const iosTags = [
+        'ios', 'swift', 'swiftui', 'apple', 'iphone', 
+        'ipad', 'mobile development'
+    ];
+    
+    const aiTags = [
+        'ai', 'artificial intelligence', 'machine learning', 
+        'deep learning', 'neural network', 'ml'
+    ];
+    
+    // Check if post belongs to any specific category
+    const isAndroid = tags.some(tag => androidTags.some(androidTag => tag.includes(androidTag)));
+    const isIOS = tags.some(tag => iosTags.some(iosTag => tag.includes(iosTag)));
+    const isAI = tags.some(tag => aiTags.some(aiTag => tag.includes(aiTag)));
+    
     switch(category) {
         case 'android':
-            return tags.some(tag => tag.includes('android') || tag.includes('kotlin') || tag.includes('java'));
+            return isAndroid;
         case 'ios':
-            return tags.some(tag => tag.includes('ios') || tag.includes('swift') || tag.includes('swiftui'));
+            return isIOS;
         case 'ai':
-            return tags.some(tag => tag.includes('ai') || tag.includes('artificial intelligence') || tag.includes('machine learning'));
+            return isAI;
         case 'others':
-            return !tags.some(tag => 
-                tag.includes('android') || 
-                tag.includes('ios') || 
-                tag.includes('swift') || 
-                tag.includes('kotlin') || 
-                tag.includes('java') || 
-                tag.includes('ai') || 
-                tag.includes('artificial intelligence') || 
-                tag.includes('machine learning')
-            );
+            // A post goes to Others if it doesn't belong to any other category
+            return !(isAndroid || isIOS || isAI);
         default:
-            return true;
+            return true; // 'all' category shows everything
     }
 }
 
