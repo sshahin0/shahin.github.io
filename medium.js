@@ -10,6 +10,7 @@ async function fetchMediumPosts() {
         
         if (data.status === 'ok') {
             displayMediumPosts(data.items);
+            setupCategoryTabs(data.items);
         } else {
             throw new Error('Failed to fetch Medium posts');
         }
@@ -19,12 +20,47 @@ async function fetchMediumPosts() {
     }
 }
 
+// Function to check if a post belongs to a specific category
+function isPostInCategory(post, category) {
+    const tags = post.categories.map(tag => tag.toLowerCase());
+    
+    switch(category) {
+        case 'android':
+            return tags.some(tag => tag.includes('android') || tag.includes('kotlin') || tag.includes('java'));
+        case 'ios':
+            return tags.some(tag => tag.includes('ios') || tag.includes('swift') || tag.includes('swiftui'));
+        case 'ai':
+            return tags.some(tag => tag.includes('ai') || tag.includes('artificial intelligence') || tag.includes('machine learning'));
+        case 'others':
+            return !tags.some(tag => 
+                tag.includes('android') || 
+                tag.includes('ios') || 
+                tag.includes('swift') || 
+                tag.includes('kotlin') || 
+                tag.includes('java') || 
+                tag.includes('ai') || 
+                tag.includes('artificial intelligence') || 
+                tag.includes('machine learning')
+            );
+        default:
+            return true;
+    }
+}
+
 // Function to display Medium posts
-function displayMediumPosts(posts) {
+function displayMediumPosts(posts, category = 'all') {
     const container = document.getElementById('medium-posts');
     container.innerHTML = ''; // Clear loading placeholder
     
-    posts.slice(0, 6).forEach(post => { // Display up to 6 posts
+    // Filter posts by category
+    const filteredPosts = category === 'all' 
+        ? posts 
+        : posts.filter(post => isPostInCategory(post, category));
+    
+    // Sort posts by date (newest first)
+    filteredPosts.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+    
+    filteredPosts.slice(0, 6).forEach(post => { // Display up to 6 posts
         const article = document.createElement('article');
         article.className = 'blog-list-item';
         
@@ -68,6 +104,22 @@ function displayMediumPosts(posts) {
         `;
         
         container.appendChild(article);
+    });
+}
+
+// Function to setup category tabs
+function setupCategoryTabs(posts) {
+    const tabs = document.querySelectorAll('.category-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            // Filter and display posts
+            const category = tab.dataset.category;
+            displayMediumPosts(posts, category);
+        });
     });
 }
 
