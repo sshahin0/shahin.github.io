@@ -260,70 +260,105 @@ section h2 {
 .experience {
     background-color: #f8f9fa;
     padding: 5rem 1rem;
+    position: relative;
 }
 
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
+.timeline {
+    max-width: 1000px;
     margin: 0 auto;
+    position: relative;
+    padding: 2rem 0;
 }
 
-.experience-card {
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: linear-gradient(to bottom, #007bff, #00bfff);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.timeline-content {
+    width: calc(50% - 40px);
+    position: relative;
+    padding: 0 20px;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    left: 50%;
+}
+
+.timeline-date {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #007bff;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.timeline-card {
     background: white;
     border-radius: 10px;
+    padding: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.experience-card:hover {
+.timeline-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.company-header {
-    padding: 1.5rem;
-    background: linear-gradient(135deg, #007bff, #00bfff);
-    color: white;
+.timeline-card h3 {
+    color: #333;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
 }
 
-.company-header h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.company {
+.timeline-card .company {
+    color: #666;
     font-size: 1.1rem;
-    margin: 0;
-    opacity: 0.9;
+    margin-bottom: 1rem;
 }
 
-.date {
-    font-size: 0.9rem;
-    margin: 0.5rem 0 0;
-    opacity: 0.8;
-}
-
-.company-content {
-    padding: 1.5rem;
-}
-
-.company-content ul {
+.timeline-card ul {
     list-style: none;
     padding: 0;
     margin: 0 0 1.5rem 0;
 }
 
-.company-content li {
+.timeline-card li {
     margin-bottom: 0.8rem;
     padding-left: 1.5rem;
     position: relative;
 }
 
-.company-content li::before {
+.timeline-card li::before {
     content: "•";
     color: #007bff;
     position: absolute;
@@ -461,6 +496,23 @@ footer {
     
     section h2 {
         font-size: 2rem;
+    }
+
+    .timeline::before {
+        left: 30px;
+    }
+
+    .timeline-dot {
+        left: 30px;
+    }
+
+    .timeline-content {
+        width: calc(100% - 80px);
+        left: 60px !important;
+    }
+
+    .timeline-date {
+        text-align: left;
     }
 }
 
