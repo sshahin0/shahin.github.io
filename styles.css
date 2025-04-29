@@ -303,7 +303,7 @@ section h2 {
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 8px;
+    height: 20px;
     background: #e0e0e0;
     transition: all 0.3s ease;
 }
@@ -316,7 +316,7 @@ section h2 {
 
 .year-marker.active::after {
     background: #007bff;
-    height: 12px;
+    height: 25px;
 }
 
 .commit-line {
@@ -748,6 +748,14 @@ footer {
 
     .year-marker {
         font-size: 0.7rem;
+    }
+
+    .year-marker::after {
+        height: 15px;
+    }
+
+    .year-marker.active::after {
+        height: 20px;
     }
 
     .tab-buttons {
