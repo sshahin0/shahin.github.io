@@ -5,19 +5,24 @@ const MEDIUM_RSS_URL = 'https://medium.com/feed/@shahin.cse.sust';
 async function fetchMediumPosts() {
     try {
         // We'll use a CORS proxy to fetch the RSS feed
-        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_RSS_URL)}&count=50`);
+        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_RSS_URL)}&count=50&api_key=YOUR_API_KEY`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
         
-        if (data.status === 'ok') {
+        if (data.status === 'ok' && data.items && data.items.length > 0) {
             console.log('Fetched posts:', data.items.length); // Debug log
             displayMediumPosts(data.items);
             setupCategoryTabs(data.items);
         } else {
-            throw new Error('Failed to fetch Medium posts');
+            throw new Error('No posts found or invalid response');
         }
     } catch (error) {
         console.error('Error fetching Medium posts:', error);
-        displayError();
+        displayError(error.message);
     }
 }
 
@@ -154,12 +159,16 @@ function setupCategoryTabs(posts) {
 }
 
 // Function to display error message
-function displayError() {
+function displayError(errorMessage) {
     const container = document.getElementById('medium-posts');
     container.innerHTML = `
         <div class="error-message">
             <i class="fas fa-exclamation-circle"></i>
-            <p>Unable to load Medium posts. Please try again later or <a href="https://medium.com/@shahin.cse.sust" target="_blank">visit my Medium profile</a>.</p>
+            <p>Unable to load Medium posts: ${errorMessage}</p>
+            <p>Please try again later or <a href="https://medium.com/@shahin.cse.sust" target="_blank">visit my Medium profile</a>.</p>
+            <button class="retry-button" onclick="fetchMediumPosts()">
+                <i class="fas fa-sync-alt"></i> Retry
+            </button>
         </div>
     `;
 }
