@@ -358,7 +358,7 @@ section h2 {
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
-    min-width: 120px;
+    min-width: 150px;
 }
 
 .tab-year {
@@ -368,6 +368,7 @@ section h2 {
     transition: all 0.3s ease;
     text-align: center;
     white-space: nowrap;
+    margin-top: 0.2rem;
 }
 
 .tab-btn.active .tab-year {
@@ -406,7 +407,10 @@ section h2 {
     white-space: nowrap;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     text-align: center;
-    min-width: 100px;
+    min-width: 120px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tab-btn.active span {
@@ -807,17 +811,20 @@ footer {
         padding: 0.5rem;
         gap: 1rem;
         align-items: center;
+        min-width: auto;
     }
 
     .tab-year {
         margin-left: auto;
         text-align: right;
+        margin-top: 0;
     }
 
     .tab-btn span {
         margin-left: 1rem;
         text-align: left;
         min-width: auto;
+        max-width: none;
     }
 
     .commit-dot {
