@@ -43,9 +43,6 @@ function displayMediumPosts(posts) {
         
         article.innerHTML = `
             <div class="blog-list-content">
-                <div class="blog-list-image">
-                    <img src="${post.thumbnail || 'https://via.placeholder.com/200x200'}" alt="${post.title}">
-                </div>
                 <div class="blog-list-details">
                     <div class="blog-list-header">
                         <div class="blog-author">
@@ -58,7 +55,6 @@ function displayMediumPosts(posts) {
                         </div>
                     </div>
                     <h3>${post.title}</h3>
-                    <p>${post.description}</p>
                     <div class="blog-list-footer">
                         <div class="blog-categories">
                             ${post.categories.slice(0, 2).map(category => 
