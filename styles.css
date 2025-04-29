@@ -393,6 +393,9 @@ section h2 {
     position: relative;
     margin-bottom: 4rem;
     padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .year-timeline {
@@ -404,6 +407,7 @@ section h2 {
     max-width: 1000px;
     margin: 0 auto 1rem;
     height: 40px;
+    width: 100%;
 }
 
 .year-marker {
@@ -471,6 +475,7 @@ section h2 {
     height: 3px;
     background: #e2e8f0;
     z-index: 1;
+    transform: translateY(-50%);
 }
 
 .tab-buttons {
@@ -481,6 +486,7 @@ section h2 {
     padding: 0 2rem;
     max-width: 1000px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .tab-btn {
@@ -501,23 +507,6 @@ section h2 {
     flex: 1;
 }
 
-/* Position each tab button */
-.tab-btn:nth-child(1) { /* BrainCraft Ltd. */
-    transform: translateX(12.5%);
-}
-
-.tab-btn:nth-child(2) { /* BJIT Limited (Senior) */
-    transform: translateX(37.5%);
-}
-
-.tab-btn:nth-child(3) { /* Sony Digital Network */
-    transform: translateX(62.5%);
-}
-
-.tab-btn:nth-child(4) { /* BJIT Limited (Junior) */
-    transform: translateX(87.5%);
-}
-
 .commit-dot {
     width: 20px;
     height: 20px;
@@ -528,17 +517,18 @@ section h2 {
     z-index: 2;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .tab-btn.active .commit-dot {
     background: #4299e1;
     box-shadow: 0 0 0 6px rgba(66, 153, 225, 0.2);
-    transform: translateY(-50%) scale(1.1);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
 .tab-btn:hover .commit-dot {
-    transform: translateY(-50%) scale(1.2);
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
 .tab-btn span {
@@ -557,15 +547,21 @@ section h2 {
     margin-top: 1rem;
 }
 
-.tab-btn.active span {
-    background: #4299e1;
-    color: white;
-    box-shadow: 0 4px 6px rgba(66, 153, 225, 0.2);
+/* Position each tab button */
+.tab-btn:nth-child(1) { /* BrainCraft Ltd. */
+    transform: translateX(12.5%);
 }
 
-.tab-btn:hover span {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.tab-btn:nth-child(2) { /* BJIT Limited (Senior) */
+    transform: translateX(37.5%);
+}
+
+.tab-btn:nth-child(3) { /* Sony Digital Network */
+    transform: translateX(62.5%);
+}
+
+.tab-btn:nth-child(4) { /* BJIT Limited (Junior) */
+    transform: translateX(87.5%);
 }
 
 .tab-content {
@@ -1276,26 +1272,14 @@ footer {
         font-size: 2rem;
     }
 
+    .commit-chain {
+        padding: 1rem 0;
+    }
+
     .year-timeline {
         padding: 0 1rem;
         margin-bottom: 1rem;
         height: 30px;
-    }
-
-    .year-marker {
-        font-size: 0.7rem;
-        min-width: 100px;
-        padding-bottom: 0.5rem;
-    }
-
-    .year-marker::after {
-        height: 15px;
-        bottom: -15px;
-    }
-
-    .year-marker.active::after {
-        height: 20px;
-        bottom: -20px;
     }
 
     .tab-buttons {
@@ -1336,6 +1320,7 @@ footer {
         height: 24px;
         position: relative;
         top: auto;
+        left: auto;
         transform: none;
     }
 
