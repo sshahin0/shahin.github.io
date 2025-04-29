@@ -5,10 +5,11 @@ const MEDIUM_RSS_URL = 'https://medium.com/feed/@shahin.cse.sust';
 async function fetchMediumPosts() {
     try {
         // We'll use a CORS proxy to fetch the RSS feed
-        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_RSS_URL)}`);
+        const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_RSS_URL)}&count=50`);
         const data = await response.json();
         
         if (data.status === 'ok') {
+            console.log('Fetched posts:', data.items.length); // Debug log
             displayMediumPosts(data.items);
             setupCategoryTabs(data.items);
         } else {
@@ -70,10 +71,13 @@ function displayMediumPosts(posts, category = 'all') {
         ? posts 
         : posts.filter(post => isPostInCategory(post, category));
     
+    console.log(`Displaying ${filteredPosts.length} posts for category: ${category}`); // Debug log
+    
     // Sort posts by date (newest first)
     filteredPosts.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
     
-    filteredPosts.slice(0, 6).forEach(post => { // Display up to 6 posts
+    // Display all posts instead of limiting to 6
+    filteredPosts.forEach(post => {
         const article = document.createElement('article');
         article.className = 'blog-list-item';
         
