@@ -282,7 +282,7 @@ section h2 {
     z-index: 2;
     padding: 0 2rem;
     max-width: 1000px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1rem;
     height: 40px;
 }
 
@@ -324,11 +324,11 @@ section h2 {
 .year-marker::after {
     content: '';
     position: absolute;
-    bottom: -25px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
-    height: 25px;
+    height: 15px;
     background: #e2e8f0;
     transition: all 0.3s ease;
 }
@@ -340,7 +340,7 @@ section h2 {
 
 .year-marker.active::after {
     background: #4299e1;
-    height: 30px;
+    height: 20px;
 }
 
 .commit-line {
@@ -434,7 +434,7 @@ section h2 {
     max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .tab-btn.active span {
@@ -792,7 +792,7 @@ footer {
 
     .year-timeline {
         padding: 0 1rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         height: 30px;
     }
 
@@ -803,13 +803,13 @@ footer {
     }
 
     .year-marker::after {
-        height: 25px;
-        bottom: -25px;
+        height: 15px;
+        bottom: -15px;
     }
 
     .year-marker.active::after {
-        height: 30px;
-        bottom: -30px;
+        height: 20px;
+        bottom: -20px;
     }
 
     .tab-buttons {
