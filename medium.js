@@ -26,7 +26,7 @@ function displayMediumPosts(posts) {
     
     posts.slice(0, 6).forEach(post => { // Display up to 6 posts
         const article = document.createElement('article');
-        article.className = 'blog-card';
+        article.className = 'blog-list-item';
         
         // Format date
         const publishDate = new Date(post.pubDate);
@@ -37,25 +37,40 @@ function displayMediumPosts(posts) {
         });
         
         article.innerHTML = `
-            <div class="blog-image">
-                <img src="${post.thumbnail || 'https://via.placeholder.com/600x400'}" alt="${post.title}">
-            </div>
-            <div class="blog-content">
-                <div class="blog-meta">
-                    <span class="blog-date">${formattedDate}</span>
-                    <span class="blog-category">${post.categories[0] || 'Technology'}</span>
+            <div class="blog-list-content">
+                <div class="blog-list-image">
+                    <img src="${post.thumbnail || 'https://via.placeholder.com/200x200'}" alt="${post.title}">
                 </div>
-                <h3>${post.title}</h3>
-                <p>${post.description}</p>
-                <div class="blog-footer">
-                    <div class="blog-author">
-                        <img src="${post.author.image || 'https://via.placeholder.com/40'}" alt="${post.author.name}" class="author-avatar">
-                        <span class="author-name">${post.author.name}</span>
+                <div class="blog-list-details">
+                    <div class="blog-list-header">
+                        <div class="blog-meta">
+                            <span class="blog-date">${formattedDate}</span>
+                            <span class="blog-category">${post.categories[0] || 'Technology'}</span>
+                        </div>
+                        <h3>${post.title}</h3>
                     </div>
-                    <a href="${post.link}" target="_blank" class="read-more">Read More</a>
+                    <div class="blog-list-description">
+                        <p>${post.description}</p>
+                    </div>
+                    <div class="blog-list-footer">
+                        <div class="blog-author">
+                            <img src="${post.author.image || 'https://via.placeholder.com/40'}" alt="${post.author.name}" class="author-avatar">
+                            <span class="author-name">${post.author.name}</span>
+                        </div>
+                        <a href="${post.link}" target="_blank" class="read-more">Read More</a>
+                    </div>
                 </div>
             </div>
         `;
+        
+        // Add click event to toggle description
+        const description = article.querySelector('.blog-list-description');
+        const header = article.querySelector('.blog-list-header');
+        
+        header.addEventListener('click', () => {
+            description.classList.toggle('expanded');
+            article.classList.toggle('expanded');
+        });
         
         container.appendChild(article);
     });
