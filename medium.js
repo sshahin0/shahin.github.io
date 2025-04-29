@@ -6,38 +6,18 @@ async function fetchMediumPosts() {
     try {
         // We'll use a CORS proxy to fetch the RSS feed
         const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_RSS_URL)}&count=50`);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
         const data = await response.json();
         
-        if (data.status === 'ok' && data.items && data.items.length > 0) {
+        if (data.status === 'ok') {
             console.log('Fetched posts:', data.items.length); // Debug log
             displayMediumPosts(data.items);
             setupCategoryTabs(data.items);
         } else {
-            // If no posts found, try alternative approach
-            try {
-                const alternativeResponse = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(MEDIUM_RSS_URL)}&count=50&api_key=YOUR_API_KEY`);
-                const alternativeData = await alternativeResponse.json();
-                
-                if (alternativeData.status === 'ok' && alternativeData.items && alternativeData.items.length > 0) {
-                    console.log('Fetched posts (alternative):', alternativeData.items.length);
-                    displayMediumPosts(alternativeData.items);
-                    setupCategoryTabs(alternativeData.items);
-                } else {
-                    throw new Error('No posts found or invalid response');
-                }
-            } catch (alternativeError) {
-                console.error('Alternative fetch failed:', alternativeError);
-                throw new Error('Unable to fetch posts from Medium');
-            }
+            throw new Error('Failed to fetch Medium posts');
         }
     } catch (error) {
         console.error('Error fetching Medium posts:', error);
-        displayError(error.message);
+        displayError();
     }
 }
 
@@ -174,13 +154,12 @@ function setupCategoryTabs(posts) {
 }
 
 // Function to display error message
-function displayError(errorMessage) {
+function displayError() {
     const container = document.getElementById('medium-posts');
     container.innerHTML = `
         <div class="error-message">
             <i class="fas fa-exclamation-circle"></i>
-            <p>Unable to load Medium posts: ${errorMessage}</p>
-            <p>Please try again later or <a href="https://medium.com/@shahin.cse.sust" target="_blank">visit my Medium profile</a>.</p>
+            <p>Unable to load Medium posts. Please try again later or <a href="https://medium.com/@shahin.cse.sust" target="_blank">visit my Medium profile</a>.</p>
             <button class="retry-button" onclick="fetchMediumPosts()">
                 <i class="fas fa-sync-alt"></i> Retry
             </button>
