@@ -26,7 +26,7 @@ function displayMediumPosts(posts) {
     
     posts.slice(0, 6).forEach(post => { // Display up to 6 posts
         const article = document.createElement('article');
-        article.className = 'blog-card';
+        article.className = 'blog-list-item';
         
         // Format date
         const publishDate = new Date(post.pubDate);
@@ -42,12 +42,12 @@ function displayMediumPosts(posts) {
             : '5 min read';
         
         article.innerHTML = `
-            <div class="blog-card-content">
-                <div class="blog-card-image">
-                    <img src="${post.thumbnail || 'https://via.placeholder.com/600x400'}" alt="${post.title}">
+            <div class="blog-list-content">
+                <div class="blog-list-image">
+                    <img src="${post.thumbnail || 'https://via.placeholder.com/200x200'}" alt="${post.title}">
                 </div>
-                <div class="blog-card-details">
-                    <div class="blog-card-header">
+                <div class="blog-list-details">
+                    <div class="blog-list-header">
                         <div class="blog-author">
                             <img src="${post.author.image || 'https://via.placeholder.com/40'}" alt="${post.author.name}" class="author-avatar">
                             <span class="author-name">${post.author.name}</span>
@@ -59,7 +59,7 @@ function displayMediumPosts(posts) {
                     </div>
                     <h3>${post.title}</h3>
                     <p>${post.description}</p>
-                    <div class="blog-card-footer">
+                    <div class="blog-list-footer">
                         <div class="blog-categories">
                             ${post.categories.slice(0, 2).map(category => 
                                 `<span class="blog-category">${category}</span>`
