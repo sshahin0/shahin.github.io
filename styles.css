@@ -283,6 +283,7 @@ section h2 {
     padding: 0 2rem;
     max-width: 1000px;
     margin: 0 auto 1rem;
+    height: 30px;
 }
 
 .year-marker {
@@ -294,6 +295,7 @@ section h2 {
     position: absolute;
     padding-bottom: 0.5rem;
     transform: translateX(-50%);
+    top: 0;
 }
 
 /* Position each year marker */
@@ -316,7 +318,7 @@ section h2 {
 .year-marker::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
@@ -769,10 +771,12 @@ footer {
 
     .year-marker::after {
         height: 15px;
+        bottom: -15px;
     }
 
     .year-marker.active::after {
         height: 20px;
+        bottom: -20px;
     }
 
     .tab-buttons {
