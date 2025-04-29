@@ -296,10 +296,12 @@ section h2 {
     padding-bottom: 0.5rem;
     transform: translateX(-50%);
     top: 0;
+    white-space: nowrap;
+    min-width: 120px;
 }
 
 /* Position each year marker */
-.year-marker:nth-child(1) { /* 2019 */
+.year-marker:nth-child(1) { /* Oct 2019 - Present */
     left: 0%;
 }
 
@@ -767,6 +769,7 @@ footer {
 
     .year-marker {
         font-size: 0.7rem;
+        min-width: 100px;
     }
 
     .year-marker::after {
