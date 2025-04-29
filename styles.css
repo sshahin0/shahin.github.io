@@ -283,15 +283,6 @@ section h2 {
     padding: 0 2rem;
     max-width: 1000px;
     margin: 0 auto 1rem;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.year-timeline::-webkit-scrollbar {
-    display: none;
 }
 
 .year-marker {
@@ -302,33 +293,7 @@ section h2 {
     text-align: center;
     position: relative;
     padding-bottom: 0.5rem;
-    flex-shrink: 0;
-    min-width: 40px;
-    visibility: hidden;
-}
-
-.year-marker:nth-child(14) {
-    visibility: visible;
-    position: absolute;
-    left: 75%;
-}
-
-.year-marker:nth-child(11) {
-    visibility: visible;
-    position: absolute;
-    left: 50%;
-}
-
-.year-marker:nth-child(10) {
-    visibility: visible;
-    position: absolute;
-    left: 25%;
-}
-
-.year-marker:nth-child(7) {
-    visibility: visible;
-    position: absolute;
-    left: 0%;
+    flex: 1;
 }
 
 .year-marker::after {
@@ -783,23 +748,6 @@ footer {
 
     .year-marker {
         font-size: 0.7rem;
-        min-width: 35px;
-    }
-
-    .year-marker:nth-child(14) {
-        left: 75%;
-    }
-
-    .year-marker:nth-child(11) {
-        left: 50%;
-    }
-
-    .year-marker:nth-child(10) {
-        left: 25%;
-    }
-
-    .year-marker:nth-child(7) {
-        left: 0%;
     }
 
     .tab-buttons {
