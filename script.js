@@ -75,37 +75,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabPanes = document.querySelectorAll('.tab-pane');
 
     function switchTab(companyId) {
-        console.log('Switching to tab:', companyId); // Debug log
-
+        console.log('Switching to tab:', companyId);
+        
         // Remove active class from all buttons and panes
-        tabButtons.forEach(btn => {
-            btn.classList.remove('active');
-            console.log('Removing active from button:', btn.getAttribute('data-company')); // Debug log
+        const buttons = document.querySelectorAll('.tab-btn');
+        const panes = document.querySelectorAll('.tab-pane');
+        const yearMarkers = document.querySelectorAll('.year-marker');
+        
+        buttons.forEach(button => {
+            console.log('Deactivating button:', button.dataset.company);
+            button.classList.remove('active');
         });
-
-        tabPanes.forEach(pane => {
+        
+        panes.forEach(pane => {
+            console.log('Hiding pane:', pane.id);
             pane.classList.remove('active');
             pane.style.display = 'none';
-            console.log('Hiding pane:', pane.id); // Debug log
         });
 
-        // Add active class to clicked button
+        yearMarkers.forEach(marker => {
+            console.log('Deactivating year marker:', marker.textContent);
+            marker.classList.remove('active');
+        });
+        
+        // Activate the selected button and pane
         const activeButton = document.querySelector(`[data-company="${companyId}"]`);
-        if (activeButton) {
-            activeButton.classList.add('active');
-            console.log('Activating button:', companyId); // Debug log
-        }
-
-        // Show corresponding pane
         const activePane = document.getElementById(companyId);
-        if (activePane) {
+        
+        if (activeButton && activePane) {
+            console.log('Activating button:', companyId);
+            activeButton.classList.add('active');
+            
+            console.log('Showing pane:', companyId);
             activePane.style.display = 'block';
-            // Use setTimeout to ensure display: block is applied before adding active class
+            
+            // Add active class after a short timeout for smoother transition
             setTimeout(() => {
                 activePane.classList.add('active');
-                console.log('Activating pane:', companyId); // Debug log
-            }, 10);
+            }, 50);
+
+            // Activate the corresponding year marker
+            const year = getYearForCompany(companyId);
+            const activeYearMarker = Array.from(yearMarkers).find(marker => marker.textContent === year);
+            if (activeYearMarker) {
+                console.log('Activating year marker:', year);
+                activeYearMarker.classList.add('active');
+            }
         }
+    }
+
+    function getYearForCompany(companyId) {
+        const yearMap = {
+            'braincraft': '2019',
+            'bjit-senior': '2015',
+            'sony': '2015',
+            'bjit-junior': '2012'
+        };
+        return yearMap[companyId] || '';
     }
 
     // Set default tab
