@@ -74,18 +74,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
+    function switchTab(companyId) {
+        // Remove active class from all buttons and panes
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabPanes.forEach(pane => {
+            pane.classList.remove('active');
+            pane.style.display = 'none';
+        });
+
+        // Add active class to clicked button
+        const activeButton = document.querySelector(`[data-company="${companyId}"]`);
+        activeButton.classList.add('active');
+
+        // Show corresponding pane
+        const activePane = document.getElementById(companyId);
+        activePane.style.display = 'block';
+        // Use setTimeout to ensure display: block is applied before adding active class
+        setTimeout(() => {
+            activePane.classList.add('active');
+        }, 10);
+    }
+
+    // Set default tab
+    switchTab('braincraft');
+
+    // Add click event listeners to tab buttons
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Remove active class from all buttons and panes
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabPanes.forEach(pane => pane.classList.remove('active'));
-
-            // Add active class to clicked button
-            button.classList.add('active');
-
-            // Show corresponding pane
             const companyId = button.getAttribute('data-company');
-            document.getElementById(companyId).classList.add('active');
+            switchTab(companyId);
         });
     });
 }); 
