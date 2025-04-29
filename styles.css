@@ -302,19 +302,19 @@ section h2 {
 
 /* Position each year marker */
 .year-marker:nth-child(1) { /* Oct 2019 - Present */
-    left: 0%;
+    left: 12.5%;
 }
 
-.year-marker:nth-child(2) { /* 2016 */
-    left: 33.33%;
+.year-marker:nth-child(2) { /* Jun 2015 - Sep 2019 */
+    left: 37.5%;
 }
 
-.year-marker:nth-child(3) { /* 2015 */
-    left: 66.66%;
+.year-marker:nth-child(3) { /* Mar 2015 - Jun 2015 */
+    left: 62.5%;
 }
 
-.year-marker:nth-child(4) { /* 2012 */
-    left: 100%;
+.year-marker:nth-child(4) { /* Jun 2012 - Feb 2015 */
+    left: 87.5%;
 }
 
 .year-marker::after {
@@ -375,6 +375,7 @@ section h2 {
     transition: all 0.3s ease;
     position: relative;
     min-width: 120px;
+    flex: 1;
 }
 
 .commit-dot {
