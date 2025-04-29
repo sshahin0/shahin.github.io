@@ -282,7 +282,7 @@ section h2 {
     z-index: 2;
     padding: 0 2rem;
     max-width: 1000px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1rem;
 }
 
 .year-marker {
@@ -292,13 +292,13 @@ section h2 {
     transition: all 0.3s ease;
     text-align: center;
     position: relative;
-    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
-.year-marker::before {
+.year-marker::after {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 2px;
@@ -313,7 +313,7 @@ section h2 {
     font-weight: 500;
 }
 
-.year-marker.active::before {
+.year-marker.active::after {
     background: #007bff;
     height: 12px;
 }
