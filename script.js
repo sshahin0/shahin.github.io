@@ -75,17 +75,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabPanes = document.querySelectorAll('.tab-pane');
 
     function switchTab(companyId) {
+        console.log('Switching to tab:', companyId); // Debug log
+
         // Remove active class from all buttons and panes
-        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabButtons.forEach(btn => {
+            btn.classList.remove('active');
+            console.log('Removing active from button:', btn.getAttribute('data-company')); // Debug log
+        });
+
         tabPanes.forEach(pane => {
             pane.classList.remove('active');
             pane.style.display = 'none';
+            console.log('Hiding pane:', pane.id); // Debug log
         });
 
         // Add active class to clicked button
         const activeButton = document.querySelector(`[data-company="${companyId}"]`);
         if (activeButton) {
             activeButton.classList.add('active');
+            console.log('Activating button:', companyId); // Debug log
         }
 
         // Show corresponding pane
@@ -95,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Use setTimeout to ensure display: block is applied before adding active class
             setTimeout(() => {
                 activePane.classList.add('active');
+                console.log('Activating pane:', companyId); // Debug log
             }, 10);
         }
     }
@@ -106,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             const companyId = button.getAttribute('data-company');
+            console.log('Button clicked:', companyId); // Debug log
             switchTab(companyId);
         });
     });
