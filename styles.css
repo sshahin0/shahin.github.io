@@ -283,6 +283,15 @@ section h2 {
     padding: 0 2rem;
     max-width: 1000px;
     margin: 0 auto 1rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.year-timeline::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .year-marker {
@@ -293,6 +302,8 @@ section h2 {
     text-align: center;
     position: relative;
     padding-bottom: 0.5rem;
+    flex-shrink: 0;
+    min-width: 40px;
 }
 
 .year-marker::after {
@@ -741,14 +752,13 @@ footer {
     }
 
     .year-timeline {
-        flex-wrap: wrap;
-        gap: 1rem;
-        justify-content: center;
         padding: 0 1rem;
+        margin-bottom: 0.5rem;
     }
 
     .year-marker {
         font-size: 0.7rem;
+        min-width: 35px;
     }
 
     .tab-buttons {
