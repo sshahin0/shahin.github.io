@@ -267,36 +267,80 @@ section h2 {
     margin: 0 auto;
 }
 
+.commit-chain {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.commit-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #e0e0e0;
+    z-index: 1;
+}
+
 .tab-buttons {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    padding: 0 1rem;
 }
 
 .tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.8rem 1.5rem;
     border: none;
-    background: white;
+    background: transparent;
     color: #666;
-    border-radius: 25px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-.tab-btn:hover {
-    background: #f0f0f0;
-    transform: translateY(-2px);
+.commit-dot {
+    width: 16px;
+    height: 16px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
-.tab-btn.active {
+.tab-btn.active .commit-dot {
+    background: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.tab-btn:hover .commit-dot {
+    transform: scale(1.2);
+}
+
+.tab-btn span {
+    background: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tab-btn.active span {
     background: #007bff;
     color: white;
-    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+}
+
+.tab-btn:hover span {
+    transform: translateY(-2px);
 }
 
 .tab-content {
@@ -513,12 +557,25 @@ footer {
 
     .tab-buttons {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .commit-line {
+        left: 8px;
+        width: 2px;
+        height: 100%;
+        top: 0;
     }
 
     .tab-btn {
+        flex-direction: row;
         width: 100%;
-        max-width: 300px;
+        padding: 0.5rem;
+    }
+
+    .tab-btn span {
+        margin-left: 1rem;
     }
 }
 
