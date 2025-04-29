@@ -291,9 +291,26 @@ section h2 {
     opacity: 0.7;
     transition: all 0.3s ease;
     text-align: center;
-    position: relative;
+    position: absolute;
     padding-bottom: 0.5rem;
-    flex: 1;
+    transform: translateX(-50%);
+}
+
+/* Position each year marker */
+.year-marker:nth-child(1) { /* 2019 */
+    left: 0%;
+}
+
+.year-marker:nth-child(2) { /* 2016 */
+    left: 33.33%;
+}
+
+.year-marker:nth-child(3) { /* 2015 */
+    left: 66.66%;
+}
+
+.year-marker:nth-child(4) { /* 2012 */
+    left: 100%;
 }
 
 .year-marker::after {
