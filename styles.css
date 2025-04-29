@@ -378,6 +378,23 @@ section h2 {
     flex: 1;
 }
 
+/* Position each tab button */
+.tab-btn:nth-child(1) { /* BrainCraft Ltd. */
+    transform: translateX(12.5%);
+}
+
+.tab-btn:nth-child(2) { /* BJIT Limited (Senior) */
+    transform: translateX(37.5%);
+}
+
+.tab-btn:nth-child(3) { /* Sony Digital Network */
+    transform: translateX(62.5%);
+}
+
+.tab-btn:nth-child(4) { /* BJIT Limited (Junior) */
+    transform: translateX(87.5%);
+}
+
 .commit-dot {
     width: 20px;
     height: 20px;
@@ -807,6 +824,7 @@ footer {
         gap: 1rem;
         align-items: center;
         min-width: auto;
+        transform: none !important;
     }
 
     .tab-btn span {
