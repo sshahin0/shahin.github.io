@@ -26,7 +26,7 @@ function displayMediumPosts(posts) {
     
     posts.slice(0, 6).forEach(post => { // Display up to 6 posts
         const article = document.createElement('article');
-        article.className = 'blog-list-item';
+        article.className = 'blog-card';
         
         // Format date
         const publishDate = new Date(post.pubDate);
@@ -36,41 +36,40 @@ function displayMediumPosts(posts) {
             day: 'numeric'
         });
         
+        // Extract reading time from description or use a default
+        const readingTime = post.description.includes('min read') 
+            ? post.description.match(/(\d+)\s*min read/)[0]
+            : '5 min read';
+        
         article.innerHTML = `
-            <div class="blog-list-content">
-                <div class="blog-list-image">
-                    <img src="${post.thumbnail || 'https://via.placeholder.com/200x200'}" alt="${post.title}">
+            <div class="blog-card-content">
+                <div class="blog-card-image">
+                    <img src="${post.thumbnail || 'https://via.placeholder.com/600x400'}" alt="${post.title}">
                 </div>
-                <div class="blog-list-details">
-                    <div class="blog-list-header">
-                        <div class="blog-meta">
-                            <span class="blog-date">${formattedDate}</span>
-                            <span class="blog-category">${post.categories[0] || 'Technology'}</span>
-                        </div>
-                        <h3>${post.title}</h3>
-                    </div>
-                    <div class="blog-list-description">
-                        <p>${post.description}</p>
-                    </div>
-                    <div class="blog-list-footer">
+                <div class="blog-card-details">
+                    <div class="blog-card-header">
                         <div class="blog-author">
                             <img src="${post.author.image || 'https://via.placeholder.com/40'}" alt="${post.author.name}" class="author-avatar">
                             <span class="author-name">${post.author.name}</span>
+                        </div>
+                        <div class="blog-meta">
+                            <span class="blog-date">${formattedDate}</span>
+                            <span class="blog-reading-time">${readingTime}</span>
+                        </div>
+                    </div>
+                    <h3>${post.title}</h3>
+                    <p>${post.description}</p>
+                    <div class="blog-card-footer">
+                        <div class="blog-categories">
+                            ${post.categories.slice(0, 2).map(category => 
+                                `<span class="blog-category">${category}</span>`
+                            ).join('')}
                         </div>
                         <a href="${post.link}" target="_blank" class="read-more">Read More</a>
                     </div>
                 </div>
             </div>
         `;
-        
-        // Add click event to toggle description
-        const description = article.querySelector('.blog-list-description');
-        const header = article.querySelector('.blog-list-header');
-        
-        header.addEventListener('click', () => {
-            description.classList.toggle('expanded');
-            article.classList.toggle('expanded');
-        });
         
         container.appendChild(article);
     });
