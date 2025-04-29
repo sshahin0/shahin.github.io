@@ -285,11 +285,60 @@ section h2 {
     z-index: 1;
 }
 
+/* Timeline Years */
+.timeline-years {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    z-index: 2;
+    transform: translateY(-50%);
+}
+
+.year-marker {
+    position: relative;
+    width: 60px;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.year-marker::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 8px;
+    background: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.year-marker.active {
+    color: #007bff;
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.year-marker.active::before {
+    background: #007bff;
+    height: 12px;
+}
+
 .tab-buttons {
     display: flex;
     justify-content: space-between;
     position: relative;
-    z-index: 2;
+    z-index: 3;
     padding: 0 2rem;
     max-width: 1000px;
     margin: 0 auto;
@@ -694,51 +743,37 @@ footer {
         font-size: 2rem;
     }
 
-    .tab-buttons {
+    .timeline-years {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-        padding: 0 1rem;
-    }
-
-    .commit-line {
-        left: 10px;
-        width: 3px;
-        height: 100%;
         top: 0;
+        left: 10px;
+        right: auto;
+        height: 100%;
+        padding: 0;
+        transform: none;
     }
 
-    .tab-btn {
-        flex-direction: row;
-        width: 100%;
-        padding: 0.5rem;
-        gap: 1rem;
-    }
-
-    .tab-btn span {
-        margin-left: 1rem;
+    .year-marker {
+        width: auto;
         text-align: left;
-        min-width: auto;
+        padding-left: 2rem;
+        margin: 1rem 0;
     }
 
-    .commit-dot {
-        width: 24px;
-        height: 24px;
+    .year-marker::before {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 2px;
     }
 
-    .card-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
+    .year-marker.active::before {
+        width: 12px;
     }
 
-    .company-meta {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .company-logo {
-        margin: 0 auto;
+    .tab-buttons {
+        margin-left: 2rem;
     }
 }
 
