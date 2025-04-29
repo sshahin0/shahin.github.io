@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let ballX = 0;
     let ballY = 0;
 
+    // Set initial positions
+    cursor.style.transform = 'translate(-50%, -50%)';
+    cursorFollower.style.transform = 'translate(-50%, -50%)';
+    ball.style.transform = 'translate(-50%, -50%)';
+
     // Update mouse position
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -29,9 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
         followerY += (mouseY - followerY) * 0.05;
         cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px)`;
 
-        // Ball movement
-        ballX += (mouseX - ballX) * 0.02;
-        ballY += (mouseY - ballY) * 0.02;
+        // Ball movement with more delay
+        ballX += (mouseX - ballX) * 0.01;
+        ballY += (mouseY - ballY) * 0.01;
         ball.style.transform = `translate(${ballX}px, ${ballY}px)`;
 
         requestAnimationFrame(animate);
@@ -46,11 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('mouseenter', () => {
             cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1.5)`;
             cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) scale(1.5)`;
+            ball.style.opacity = '0.5';
         });
 
         link.addEventListener('mouseleave', () => {
             cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) scale(1)`;
             cursorFollower.style.transform = `translate(${followerX}px, ${followerY}px) scale(1)`;
+            ball.style.opacity = '0.3';
         });
     });
 }); 
