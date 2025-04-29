@@ -94,6 +94,12 @@ function displayMediumPosts(posts, category = 'all') {
             ? post.description.match(/(\d+)\s*min read/)[0]
             : '5 min read';
         
+        // Format clap count
+        const clapCount = post.likes || 0;
+        const formattedClaps = clapCount >= 1000 
+            ? `${(clapCount / 1000).toFixed(1)}K` 
+            : clapCount.toString();
+        
         article.innerHTML = `
             <div class="blog-list-content">
                 <div class="blog-thumbnail">
@@ -108,6 +114,10 @@ function displayMediumPosts(posts, category = 'all') {
                         <div class="blog-meta">
                             <span class="blog-date">${formattedDate}</span>
                             <span class="blog-reading-time">${readingTime}</span>
+                            <span class="blog-claps">
+                                <i class="fas fa-hands-clapping"></i>
+                                ${formattedClaps}
+                            </span>
                         </div>
                     </div>
                     <h3>${post.title}</h3>
