@@ -257,33 +257,99 @@ section h2 {
 }
 
 /* Experience Section */
-.timeline {
-    max-width: 800px;
+.experience {
+    background-color: #f8f9fa;
+    padding: 5rem 1rem;
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.timeline-item {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.experience-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.timeline-content h3 {
-    color: #333;
+.experience-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.company-header {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #007bff, #00bfff);
+    color: white;
+}
+
+.company-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
 .company {
-    color: #666;
-    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 0;
+    opacity: 0.9;
 }
 
 .date {
-    color: #999;
     font-size: 0.9rem;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0 0;
+    opacity: 0.8;
+}
+
+.company-content {
+    padding: 1.5rem;
+}
+
+.company-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.company-content li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.company-content li::before {
+    content: "•";
+    color: #007bff;
+    position: absolute;
+    left: 0;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tech-stack span {
+    background: #f0f0f0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.tech-stack span:hover {
+    background: #007bff;
+    color: white;
+    transform: translateY(-2px);
 }
 
 /* Projects Section */
