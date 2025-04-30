@@ -990,26 +990,6 @@ section h2 {
     display: none;
 }
 
-/* Contact Section */
-.contact-content {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.contact-links {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-}
-
-.contact-links a {
-    color: #007bff;
-    text-decoration: none;
-    font-size: 1.1rem;
-}
-
 /* Footer */
 footer {
     text-align: center;
@@ -1325,14 +1305,6 @@ button:hover ~ .cursor-follower {
     flex-direction: column;
 }
 
-.project-card.hide {
-    display: none;
-}
-
-.project-card.show {
-    display: flex;
-}
-
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
@@ -1625,75 +1597,5 @@ button:hover ~ .cursor-follower {
 @media (max-width: 768px) {
     .project-thumbnail {
         height: 180px;
-    }
-}
-
-/* Project Category Tabs */
-.project-categories {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 0;
-    position: relative;
-}
-
-.project-categories .category-tab {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    background: transparent;
-    color: #666;
-    border-radius: 8px 8px 0 0;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    position: relative;
-    margin-bottom: -2px;
-    border: 2px solid transparent;
-    border-bottom: none;
-}
-
-.project-categories .category-tab:hover {
-    background: #f8fafc;
-    color: #2563eb;
-    border-color: #e2e8f0;
-}
-
-.project-categories .category-tab.active {
-    background: white;
-    color: #2563eb;
-    border-color: #e2e8f0;
-    border-bottom-color: white;
-}
-
-.project-categories .category-tab.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: white;
-}
-
-/* Responsive adjustments for project tabs */
-@media (max-width: 768px) {
-    .project-categories {
-        padding: 0 1rem;
-        overflow-x: auto;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-    }
-    
-    .project-categories::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .project-categories .category-tab {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
-        white-space: nowrap;
     }
 } 
