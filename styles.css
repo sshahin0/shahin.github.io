@@ -376,6 +376,39 @@ section h2 {
     left: 0;
 }
 
+.about-intro .social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.about-intro .social-links a {
+    color: #333;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.about-intro .social-links a:hover {
+    color: #2563eb;
+    transform: translateY(-3px);
+}
+
+.about-intro .social-links a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(37, 99, 235, 0.1);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+
+.about-intro .social-links a:hover::before {
+    transform: scale(1.5);
+}
+
 /* Experience Section */
 .experience {
     background-color: #f8f9fa;
