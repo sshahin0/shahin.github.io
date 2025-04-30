@@ -937,6 +937,36 @@ section h2 {
     padding: 0 2rem;
 }
 
+.blog-categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.category-tab {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: #f0f0f0;
+    color: #666;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.category-tab:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.category-tab.active {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
 .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1001,6 +1031,18 @@ section h2 {
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.blog-card.hidden {
+    display: none;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.blog-card.filtered {
+    display: none;
 }
 
 .blog-card:hover {

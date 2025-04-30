@@ -3,7 +3,12 @@ const CONFIG = {
     MEDIUM_USERNAME: 'shahin.cse.sust',
     RSS2JSON_API_KEY: 'eh3420igjkzhtpfnfybwncw6g3vfybiqbtm04woc',
     MAX_POSTS: 100,
-    WORDS_PER_MINUTE: 200
+    WORDS_PER_MINUTE: 200,
+    MEDIUM_LISTS: {
+        android: 'android-development',
+        ios: 'ios-development',
+        ai: 'artificial-intelligence'
+    }
 };
 
 // Medium RSS feed URL
@@ -18,7 +23,9 @@ async function fetchMediumPosts() {
         
         if (data.status === 'ok') {
             console.log('Fetched posts:', data.items.length);
-            displayMediumPosts(data.items);
+            const posts = await enrichPostsWithCategories(data.items);
+            displayMediumPosts(posts);
+            setupCategoryFilters();
         } else {
             throw new Error('Failed to fetch Medium posts');
         }
@@ -29,7 +36,9 @@ async function fetchMediumPosts() {
             const response = await fetch(`https://mediumpostsapi.vercel.app/api/posts/${CONFIG.MEDIUM_USERNAME}`);
             const data = await response.json();
             if (data.posts && data.posts.length > 0) {
-                displayMediumPosts(data.posts);
+                const posts = await enrichPostsWithCategories(data.posts);
+                displayMediumPosts(posts);
+                setupCategoryFilters();
             } else {
                 throw new Error('No posts found');
             }
@@ -38,6 +47,70 @@ async function fetchMediumPosts() {
             displayError();
         }
     }
+}
+
+// Function to enrich posts with categories based on Medium lists
+async function enrichPostsWithCategories(posts) {
+    const enrichedPosts = [...posts];
+    
+    // Fetch posts from each Medium list
+    for (const [category, listSlug] of Object.entries(CONFIG.MEDIUM_LISTS)) {
+        try {
+            const listUrl = `https://medium.com/@${CONFIG.MEDIUM_USERNAME}/list/${listSlug}`;
+            const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(listUrl)}&api_key=${CONFIG.RSS2JSON_API_KEY}&count=${CONFIG.MAX_POSTS}`);
+            const data = await response.json();
+            
+            if (data.status === 'ok' && data.items) {
+                // Add category to posts that are in this list
+                data.items.forEach(listPost => {
+                    const postIndex = enrichedPosts.findIndex(post => post.guid === listPost.guid);
+                    if (postIndex !== -1) {
+                        if (!enrichedPosts[postIndex].categories) {
+                            enrichedPosts[postIndex].categories = [];
+                        }
+                        enrichedPosts[postIndex].categories.push(category);
+                    }
+                });
+            }
+        } catch (error) {
+            console.error(`Error fetching ${category} list:`, error);
+        }
+    }
+    
+    return enrichedPosts;
+}
+
+// Function to setup category filters
+function setupCategoryFilters() {
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Update active state
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            // Filter posts
+            const category = tab.dataset.category;
+            filterPosts(category);
+        });
+    });
+}
+
+// Function to filter posts by category
+function filterPosts(category) {
+    const posts = document.querySelectorAll('.blog-card');
+    posts.forEach(post => {
+        if (category === 'all') {
+            post.classList.remove('filtered');
+        } else {
+            const postCategories = post.dataset.categories ? post.dataset.categories.split(',') : [];
+            if (postCategories.includes(category)) {
+                post.classList.remove('filtered');
+            } else {
+                post.classList.add('filtered');
+            }
+        }
+    });
 }
 
 // Function to extract image from content
@@ -94,15 +167,17 @@ function displayMediumPosts(posts) {
     // Clear existing content
     blogGrid.innerHTML = '';
 
-    // Display all posts (no slice)
+    // Display all posts
     posts.forEach(post => {
         const thumbnail = post.thumbnail || extractImage(post.content) || 'assets/blog/default-blog.jpg';
         const readingTime = estimateReadingTime(post.content);
         const description = truncateText(post.description || post.content.replace(/<[^>]*>/g, ''));
         const formattedDate = formatDate(post.pubDate || post.date);
+        const categories = post.categories || [];
 
         const article = document.createElement('article');
         article.className = 'blog-card';
+        article.dataset.categories = categories.join(',');
         
         article.innerHTML = `
             <img src="${thumbnail}" alt="${post.title}" onerror="this.src='assets/blog/default-blog.jpg'">
@@ -126,13 +201,13 @@ function displayMediumPosts(posts) {
         loadMoreBtn.className = 'load-more-btn';
         loadMoreBtn.innerHTML = 'Load More Posts';
         loadMoreBtn.onclick = function() {
-            const hiddenPosts = document.querySelectorAll('.blog-card.hidden');
+            const hiddenPosts = document.querySelectorAll('.blog-card.hidden:not(.filtered)');
             hiddenPosts.forEach((post, index) => {
                 if (index < 9) {
                     post.classList.remove('hidden');
                 }
             });
-            if (document.querySelectorAll('.blog-card.hidden').length === 0) {
+            if (document.querySelectorAll('.blog-card.hidden:not(.filtered)').length === 0) {
                 loadMoreBtn.style.display = 'none';
             }
         };
