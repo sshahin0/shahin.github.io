@@ -162,12 +162,15 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show/hide projects based on category
             projectCards.forEach(card => {
                 if (category === 'all') {
+                    card.classList.remove('hide');
                     card.classList.add('show');
                 } else {
                     if (card.getAttribute('data-category') === category) {
+                        card.classList.remove('hide');
                         card.classList.add('show');
                     } else {
                         card.classList.remove('show');
+                        card.classList.add('hide');
                     }
                 }
             });
