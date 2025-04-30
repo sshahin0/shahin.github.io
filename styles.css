@@ -1635,7 +1635,8 @@ button:hover ~ .cursor-follower {
     gap: 0.5rem;
     margin-bottom: 2rem;
     border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0;
+    position: relative;
 }
 
 .project-categories .category-tab {
@@ -1648,28 +1649,32 @@ button:hover ~ .cursor-follower {
     font-size: 0.9rem;
     transition: all 0.3s ease;
     position: relative;
-    margin-bottom: -0.5rem;
+    margin-bottom: -2px;
+    border: 2px solid transparent;
+    border-bottom: none;
 }
 
 .project-categories .category-tab:hover {
     background: #f8fafc;
     color: #2563eb;
+    border-color: #e2e8f0;
 }
 
 .project-categories .category-tab.active {
-    background: #2563eb;
-    color: white;
-    box-shadow: 0 -2px 4px rgba(37, 99, 235, 0.1);
+    background: white;
+    color: #2563eb;
+    border-color: #e2e8f0;
+    border-bottom-color: white;
 }
 
 .project-categories .category-tab.active::after {
     content: '';
     position: absolute;
-    bottom: -0.5rem;
+    bottom: -2px;
     left: 0;
     width: 100%;
     height: 2px;
-    background: #2563eb;
+    background: white;
 }
 
 /* Responsive adjustments for project tabs */
