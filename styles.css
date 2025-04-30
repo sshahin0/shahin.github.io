@@ -1306,6 +1306,13 @@ button:hover ~ .cursor-follower {
     box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
 }
 
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* Show 3 items per row */
+    gap: 2rem;  /* Space between grid items */
+    margin-top: 2rem;
+}
+
 .project-card {
     background: white;
     border-radius: 12px;
@@ -1313,7 +1320,7 @@ button:hover ~ .cursor-follower {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border: 1px solid #e2e8f0;
-    height: 100%;
+    height: 100%;  /* Ensure all cards have same height */
     display: flex;
     flex-direction: column;
 }
@@ -1323,11 +1330,31 @@ button:hover ~ .cursor-follower {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
+.project-thumbnail {
+    width: 100%;
+    height: 200px;  /* Fixed height for thumbnails */
+    overflow: hidden;
+    position: relative;
+    background: #f8f9fa;
+}
+
+.project-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Cover the space while maintaining aspect ratio */
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-thumbnail img {
+    transform: scale(1.05);
+}
+
 .project-content {
     padding: 1.5rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background: white;
 }
 
 .project-content h3 {
@@ -1367,14 +1394,26 @@ button:hover ~ .cursor-follower {
     transform: translateY(-2px);
 }
 
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);  /* 2 items per row on medium screens */
+    }
+}
+
 @media (max-width: 768px) {
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;  /* 1 item per row on mobile */
+        gap: 1.5rem;
     }
     
     .project-card {
         max-width: 500px;
         margin: 0 auto;
+    }
+
+    .project-thumbnail {
+        height: 180px;
     }
 }
 
