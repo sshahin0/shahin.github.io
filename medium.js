@@ -113,13 +113,7 @@ function displayMediumPosts(posts) {
                 </div>
                 <h3 class="blog-title">${post.title}</h3>
                 <p class="blog-description">${description}</p>
-                <div class="blog-author">
-                    <img src="assets/profile.jpg" alt="Shahin" class="author-avatar">
-                    <div class="author-info">
-                        <span class="author-name">Shahin</span>
-                        <a href="${post.link}" target="_blank" class="read-more">Read More →</a>
-                    </div>
-                </div>
+                <a href="${post.link}" target="_blank" class="read-more">Read More →</a>
             </div>
         `;
         
