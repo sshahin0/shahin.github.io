@@ -410,6 +410,7 @@ section h2 {
     z-index: 0;
 }
 
+/* Vertical connecting lines */
 .tab-btn {
     padding: 0.75rem 1.5rem;
     border: none;
@@ -429,6 +430,34 @@ section h2 {
     margin-top: 2rem;
 }
 
+/* Vertical line for each tab */
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100px; /* Height of the vertical line */
+    background: #e2e8f0;
+    top: -100px; /* Start from the year */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* Timeline dot */
+.tab-btn .timeline-dot {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
 /* Year indicator */
 .tab-btn::after {
     content: attr(data-year);
@@ -443,21 +472,6 @@ section h2 {
     font-weight: 500;
 }
 
-/* Timeline dot */
-.tab-btn::before {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background: #e2e8f0;
-    border-radius: 50%;
-    top: -2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: all 0.3s ease;
-    z-index: 2;
-}
-
 .tab-btn:hover {
     background: #e0e0e0;
     transform: translateY(-2px);
@@ -470,6 +484,10 @@ section h2 {
 }
 
 .tab-btn.active::before {
+    background: #2563eb;
+}
+
+.tab-btn.active .timeline-dot {
     background: #2563eb;
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
 }
@@ -510,6 +528,14 @@ section h2 {
     }
 
     .tab-btn::before {
+        width: 2px;
+        height: 100%;
+        left: -8px;
+        top: 0;
+        transform: none;
+    }
+
+    .tab-btn .timeline-dot {
         left: -8px;
         top: 50%;
         transform: translateY(-50%);
