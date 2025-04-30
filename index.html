@@ -471,25 +471,66 @@
     <section id="blog" class="blog">
         <h2>Latest Articles</h2>
         <div class="blog-container">
-            <div class="blog-header">
-                <h3>My Writing on Medium</h3>
-                <a href="https://medium.com/@shahin.cse.sust" target="_blank" class="medium-profile-link">
-                    <i class="fab fa-medium"></i> View all articles
-                </a>
-            </div>
-            <div class="blog-categories">
-                <button class="category-tab active" data-category="all">All</button>
-                <button class="category-tab" data-category="android">Android</button>
-                <button class="category-tab" data-category="ios">iOS</button>
-                <button class="category-tab" data-category="ai">AI</button>
-                <button class="category-tab" data-category="others">Others</button>
-            </div>
-            <div class="blog-list" id="medium-posts">
-                <!-- Blog posts will be loaded dynamically -->
-                <div class="loading-placeholder">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading articles from Medium...</p>
-                </div>
+            <div class="blog-grid">
+                <!-- SwiftUI Article -->
+                <article class="blog-card">
+                    <img src="assets/blog/blog1.jpg" alt="SwiftUI Features">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span>Dec 15, 2023</span>
+                            <span>iOS Development</span>
+                        </div>
+                        <h3 class="blog-title">Understanding SwiftUI's New Features in iOS 17</h3>
+                        <p class="blog-description">Explore the latest features and improvements in SwiftUI with iOS 17, including enhanced animations, custom layouts, and improved performance.</p>
+                        <div class="blog-author">
+                            <img src="assets/profile.jpg" alt="Shahin" class="author-avatar">
+                            <div class="author-info">
+                                <span class="author-name">Shahin</span>
+                                <a href="#" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Kotlin Article -->
+                <article class="blog-card">
+                    <img src="assets/blog/blog2.jpg" alt="Kotlin Coroutines">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span>Nov 28, 2023</span>
+                            <span>Android Development</span>
+                        </div>
+                        <h3 class="blog-title">Mastering Kotlin Coroutines for Android Development</h3>
+                        <p class="blog-description">Deep dive into Kotlin Coroutines and learn how to handle asynchronous operations efficiently in your Android applications.</p>
+                        <div class="blog-author">
+                            <img src="assets/profile.jpg" alt="Shahin" class="author-avatar">
+                            <div class="author-info">
+                                <span class="author-name">Shahin</span>
+                                <a href="#" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Material Design Article -->
+                <article class="blog-card">
+                    <img src="assets/blog/blog3.jpg" alt="Material Design">
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span>Oct 15, 2023</span>
+                            <span>UI/UX Design</span>
+                        </div>
+                        <h3 class="blog-title">Designing Beautiful Mobile Apps with Material Design 3</h3>
+                        <p class="blog-description">Learn how to implement Material Design 3 principles in your mobile applications for a modern and consistent user experience.</p>
+                        <div class="blog-author">
+                            <img src="assets/profile.jpg" alt="Shahin" class="author-avatar">
+                            <div class="author-info">
+                                <span class="author-name">Shahin</span>
+                                <a href="#" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -512,5 +553,4 @@
     </footer>
 </body>
 <script src="script.js"></script>
-<script src="medium.js"></script>
 </html> 
