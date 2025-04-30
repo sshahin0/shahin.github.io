@@ -4,15 +4,11 @@ const CONFIG = {
     RSS2JSON_API_KEY: 'eh3420igjkzhtpfnfybwncw6g3vfybiqbtm04woc',
     MAX_POSTS: 100,
     WORDS_PER_MINUTE: 200,
-    MEDIUM_LISTS: {
-        android: 'android-development',
-        ios: 'ios-development',
-        ai: 'artificial-intelligence'
-    }
+    ANDROID_LIST_ID: '2f09c1a2e07e'
 };
 
-// Medium RSS feed URL
-const MEDIUM_RSS_URL = `https://medium.com/@${CONFIG.MEDIUM_USERNAME}/feed`;
+// Medium RSS feed URL for Android list
+const MEDIUM_RSS_URL = `https://medium.com/@${CONFIG.MEDIUM_USERNAME}/list/android-${CONFIG.ANDROID_LIST_ID}`;
 
 // Function to fetch and parse Medium RSS feed
 async function fetchMediumPosts() {
@@ -22,62 +18,16 @@ async function fetchMediumPosts() {
         const data = await response.json();
         
         if (data.status === 'ok') {
-            console.log('Fetched posts:', data.items.length);
-            const posts = await enrichPostsWithCategories(data.items);
-            displayMediumPosts(posts);
+            console.log('Fetched Android posts:', data.items.length);
+            displayMediumPosts(data.items);
             setupCategoryFilters();
         } else {
             throw new Error('Failed to fetch Medium posts');
         }
     } catch (error) {
         console.error('Error fetching Medium posts:', error);
-        // Fallback to scraping the Medium profile page
-        try {
-            const response = await fetch(`https://mediumpostsapi.vercel.app/api/posts/${CONFIG.MEDIUM_USERNAME}`);
-            const data = await response.json();
-            if (data.posts && data.posts.length > 0) {
-                const posts = await enrichPostsWithCategories(data.posts);
-                displayMediumPosts(posts);
-                setupCategoryFilters();
-            } else {
-                throw new Error('No posts found');
-            }
-        } catch (fallbackError) {
-            console.error('Fallback also failed:', fallbackError);
-            displayError();
-        }
+        displayError();
     }
-}
-
-// Function to enrich posts with categories based on Medium lists
-async function enrichPostsWithCategories(posts) {
-    const enrichedPosts = [...posts];
-    
-    // Fetch posts from each Medium list
-    for (const [category, listSlug] of Object.entries(CONFIG.MEDIUM_LISTS)) {
-        try {
-            const listUrl = `https://medium.com/@${CONFIG.MEDIUM_USERNAME}/list/${listSlug}`;
-            const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(listUrl)}&api_key=${CONFIG.RSS2JSON_API_KEY}&count=${CONFIG.MAX_POSTS}`);
-            const data = await response.json();
-            
-            if (data.status === 'ok' && data.items) {
-                // Add category to posts that are in this list
-                data.items.forEach(listPost => {
-                    const postIndex = enrichedPosts.findIndex(post => post.guid === listPost.guid);
-                    if (postIndex !== -1) {
-                        if (!enrichedPosts[postIndex].categories) {
-                            enrichedPosts[postIndex].categories = [];
-                        }
-                        enrichedPosts[postIndex].categories.push(category);
-                    }
-                });
-            }
-        } catch (error) {
-            console.error(`Error fetching ${category} list:`, error);
-        }
-    }
-    
-    return enrichedPosts;
 }
 
 // Function to setup category filters
@@ -173,11 +123,10 @@ function displayMediumPosts(posts) {
         const readingTime = estimateReadingTime(post.content);
         const description = truncateText(post.description || post.content.replace(/<[^>]*>/g, ''));
         const formattedDate = formatDate(post.pubDate || post.date);
-        const categories = post.categories || [];
 
         const article = document.createElement('article');
         article.className = 'blog-card';
-        article.dataset.categories = categories.join(',');
+        article.dataset.categories = 'android'; // All posts are from Android list
         
         article.innerHTML = `
             <img src="${thumbnail}" alt="${post.title}" onerror="this.src='assets/blog/default-blog.jpg'">
@@ -231,7 +180,7 @@ function displayError() {
     blogGrid.innerHTML = `
         <div class="error-message">
             <p>Unable to load Medium posts at the moment.</p>
-            <p>Please visit my <a href="https://medium.com/@${CONFIG.MEDIUM_USERNAME}" target="_blank">Medium profile</a> directly.</p>
+            <p>Please visit my <a href="https://medium.com/@${CONFIG.MEDIUM_USERNAME}/list/android-${CONFIG.ANDROID_LIST_ID}" target="_blank">Android Development articles</a> directly.</p>
             <button onclick="fetchMediumPosts()" class="retry-button">
                 <i class="fas fa-sync-alt"></i> Retry
             </button>
