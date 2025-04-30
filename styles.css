@@ -391,30 +391,21 @@ section h2 {
 
 .tab-buttons {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 3rem;
     position: relative;
     padding: 0 2rem;
 }
 
-/* Add dotted line connecting tabs */
+/* Timeline line */
 .tab-buttons::before {
     content: '';
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: calc(100% - 4rem);
+    left: 0;
+    right: 0;
     height: 2px;
-    background: repeating-linear-gradient(
-        to right,
-        #4299e1 0px,
-        #4299e1 4px,
-        transparent 4px,
-        transparent 8px
-    );
+    background: #e2e8f0;
     z-index: 0;
 }
 
@@ -429,6 +420,39 @@ section h2 {
     transition: all 0.3s ease;
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 120px;
+}
+
+/* Timeline dot */
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+/* Year indicator */
+.tab-btn::after {
+    content: attr(data-year);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: #666;
+    white-space: nowrap;
+    transition: all 0.3s ease;
 }
 
 .tab-btn:hover {
@@ -442,25 +466,55 @@ section h2 {
     box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
 }
 
-/* Add connecting dots for each tab */
-.tab-btn::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: #4299e1;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    opacity: 0;
-    transition: all 0.3s ease;
+.tab-btn.active::before {
+    background: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
 }
 
 .tab-btn.active::after {
-    opacity: 1;
-    box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.2);
+    color: #2563eb;
+    font-weight: 500;
+}
+
+/* Company name */
+.tab-btn span {
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tab-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 0;
+    }
+
+    .tab-buttons::before {
+        width: 2px;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+    }
+
+    .tab-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .tab-btn::before {
+        left: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .tab-btn::after {
+        left: -40px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
 .tab-content {
