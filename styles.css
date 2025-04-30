@@ -1629,7 +1629,7 @@ button:hover ~ .cursor-follower {
     flex-wrap: wrap;
 }
 
-.category-tab {
+.project-categories .category-tab {
     padding: 0.75rem 1.5rem;
     border: none;
     background: #f0f0f0;
@@ -1640,12 +1640,12 @@ button:hover ~ .cursor-follower {
     transition: all 0.3s ease;
 }
 
-.category-tab:hover {
+.project-categories .category-tab:hover {
     background: #e0e0e0;
     transform: translateY(-2px);
 }
 
-.category-tab.active {
+.project-categories .category-tab.active {
     background: #2563eb;
     color: white;
     box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
@@ -1657,6 +1657,7 @@ button:hover ~ .cursor-follower {
 
 .project-card.show {
     display: flex; /* Show cards with 'show' class */
+    flex-direction: column;
 }
 
 /* Responsive adjustments for project tabs */
@@ -1665,7 +1666,7 @@ button:hover ~ .cursor-follower {
         padding: 0 1rem;
     }
     
-    .category-tab {
+    .project-categories .category-tab {
         padding: 0.5rem 1rem;
         font-size: 0.85rem;
     }
