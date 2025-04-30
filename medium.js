@@ -39,9 +39,11 @@ function setupCategoryFilters() {
             categoryTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             
-            // Filter posts
-            const category = tab.dataset.category;
-            filterPosts(category);
+            // Show all posts since we only have Android category
+            const posts = document.querySelectorAll('.blog-card');
+            posts.forEach(post => {
+                post.classList.remove('filtered');
+            });
         });
     });
 }
@@ -50,16 +52,7 @@ function setupCategoryFilters() {
 function filterPosts(category) {
     const posts = document.querySelectorAll('.blog-card');
     posts.forEach(post => {
-        if (category === 'all') {
-            post.classList.remove('filtered');
-        } else {
-            const postCategories = post.dataset.categories ? post.dataset.categories.split(',') : [];
-            if (postCategories.includes(category)) {
-                post.classList.remove('filtered');
-            } else {
-                post.classList.add('filtered');
-            }
-        }
+        post.classList.remove('filtered');
     });
 }
 
