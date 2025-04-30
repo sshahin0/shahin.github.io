@@ -939,11 +939,62 @@ section h2 {
 
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+    position: relative;
 }
 
+/* Loading State */
+.loading-placeholder {
+    text-align: center;
+    padding: 4rem 2rem;
+    grid-column: 1 / -1;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loading-placeholder i {
+    font-size: 2rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.loading-placeholder p {
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+/* Error State */
+.error-message {
+    text-align: center;
+    padding: 4rem 2rem;
+    grid-column: 1 / -1;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-message p {
+    color: #6b7280;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.error-message a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.error-message a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* Blog Cards */
 .blog-card {
     background: white;
     border-radius: 8px;
@@ -1035,6 +1086,11 @@ section h2 {
     .blog-card img {
         height: 250px;
     }
+    
+    .loading-placeholder,
+    .error-message {
+        padding: 2rem 1rem;
+    }
 }
 
 /* Remove all Medium-specific styles */
@@ -1048,10 +1104,7 @@ section h2 {
 .blog-list-header,
 .blog-list-footer,
 .blog-category,
-.blog-claps,
-.loading-placeholder,
-.error-message,
-.retry-button {
+.blog-claps {
     display: none;
 }
 
@@ -1329,4 +1382,55 @@ button:hover ~ .cursor-follower {
 
 .download-button i {
     font-size: 1.1rem;
+}
+
+.retry-button {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.retry-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.retry-button i {
+    font-size: 1rem;
+}
+
+/* Load More Button */
+.load-more-btn {
+    grid-column: 1 / -1;
+    margin: 2rem auto;
+    padding: 0.75rem 2rem;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.load-more-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+}
+
+/* Hidden Posts */
+.blog-card.hidden {
+    display: none;
 } 
