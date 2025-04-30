@@ -389,179 +389,34 @@ section h2 {
     position: relative;
 }
 
-.commit-chain {
-    position: relative;
-    margin-bottom: 4rem;
-    padding: 2rem 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.year-timeline {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 2;
-    padding: 0 2rem;
-    max-width: 1000px;
-    margin: 0 auto 1rem;
-    height: 40px;
-    width: 100%;
-}
-
-.year-marker {
-    font-size: 0.8rem;
-    color: #4a5568;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    text-align: center;
-    position: absolute;
-    padding-bottom: 0.8rem;
-    transform: translateX(-50%);
-    top: 0;
-    white-space: nowrap;
-    min-width: 120px;
-}
-
-/* Position each year marker */
-.year-marker:nth-child(1) { /* Oct 2019 - Present */
-    left: 12.5%;
-    color: #2b6cb0;
-}
-
-.year-marker:nth-child(2) { /* Jun 2015 - Sep 2019 */
-    left: 37.5%;
-    color: #2c5282;
-}
-
-.year-marker:nth-child(3) { /* Mar 2015 - Jun 2015 */
-    left: 62.5%;
-    color: #2a4365;
-}
-
-.year-marker:nth-child(4) { /* Jun 2012 - Feb 2015 */
-    left: 87.5%;
-    color: #1a365d;
-}
-
-.year-marker::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 15px;
-    background: #e2e8f0;
-    transition: all 0.3s ease;
-}
-
-.year-marker.active {
-    opacity: 1;
-    font-weight: 500;
-}
-
-.year-marker.active::after {
-    background: #4299e1;
-    height: 20px;
-}
-
-.commit-line {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: #e2e8f0;
-    z-index: 1;
-    transform: translateY(-50%);
-}
-
 .tab-buttons {
     display: flex;
-    justify-content: space-between;
-    position: relative;
-    z-index: 3;
-    padding: 0 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
 .tab-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.5rem;
+    padding: 0.75rem 1.5rem;
     border: none;
-    background: transparent;
-    color: #4a5568;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-    min-width: 120px;
-    flex: 1;
-}
-
-.commit-dot {
-    width: 20px;
-    height: 20px;
-    background: #e2e8f0;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    position: absolute;
-    z-index: 2;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.tab-btn.active .commit-dot {
-    background: #4299e1;
-    box-shadow: 0 0 0 6px rgba(66, 153, 225, 0.2);
-    transform: translate(-50%, -50%) scale(1.1);
-}
-
-.tab-btn:hover .commit-dot {
-    transform: translate(-50%, -50%) scale(1.2);
-}
-
-.tab-btn span {
-    background: white;
-    padding: 0.5rem 1rem;
+    background: #f0f0f0;
+    color: #666;
     border-radius: 20px;
-    font-size: 0.95rem;
+    cursor: pointer;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
-    white-space: nowrap;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    min-width: 120px;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 1rem;
 }
 
-/* Position each tab button */
-.tab-btn:nth-child(1) { /* BrainCraft Ltd. */
-    transform: translateX(12.5%);
+.tab-btn:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
 }
 
-.tab-btn:nth-child(2) { /* BJIT Limited (Senior) */
-    transform: translateX(37.5%);
-}
-
-.tab-btn:nth-child(3) { /* Sony Digital Network */
-    transform: translateX(62.5%);
-}
-
-.tab-btn:nth-child(4) { /* BJIT Limited (Junior) */
-    transform: translateX(87.5%);
+.tab-btn.active {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
 }
 
 .tab-content {
@@ -1187,64 +1042,15 @@ footer {
         font-size: 2rem;
     }
 
-    .commit-chain {
-        padding: 1rem 0;
-    }
-
-    .year-timeline {
-        padding: 0 1rem;
-        margin-bottom: 1rem;
-        height: 30px;
-    }
-
     .tab-buttons {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-        padding: 0 1rem;
-        margin-top: 0.5rem;
-    }
-
-    .commit-line {
-        left: 10px;
-        width: 3px;
-        height: 100%;
-        top: 0;
+        align-items: stretch;
+        gap: 0.5rem;
     }
 
     .tab-btn {
-        flex-direction: row;
         width: 100%;
-        padding: 0.5rem;
-        gap: 1rem;
-        align-items: center;
-        min-width: auto;
-        transform: none !important;
-    }
-
-    .tab-btn span {
-        margin-left: 1rem;
-        text-align: left;
-        min-width: auto;
-        max-width: none;
-        margin-top: 0;
-    }
-
-    .commit-dot {
-        width: 24px;
-        height: 24px;
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-    }
-
-    .tab-btn.active .commit-dot {
-        transform: scale(1.1);
-    }
-
-    .tab-btn:hover .commit-dot {
-        transform: scale(1.2);
+        text-align: center;
     }
 
     .card-header {
