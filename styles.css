@@ -410,7 +410,6 @@ section h2 {
     z-index: 0;
 }
 
-/* Vertical connecting lines */
 .tab-btn {
     padding: 0.75rem 1.5rem;
     border: none;
@@ -430,14 +429,14 @@ section h2 {
     margin-top: 2rem;
 }
 
-/* Vertical line for each tab */
+/* Vertical line from tab to dot */
 .tab-btn::before {
     content: '';
     position: absolute;
     width: 2px;
-    height: 100px; /* Height of the vertical line */
+    height: 2rem; /* Height from tab to dot */
     background: #e2e8f0;
-    top: -100px; /* Start from the year */
+    top: -2rem; /* Start from the dot */
     left: 50%;
     transform: translateX(-50%);
     z-index: 0;
