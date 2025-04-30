@@ -146,25 +146,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Project filtering
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    // Project Category Filtering
+    const categoryTabs = document.querySelectorAll('.category-tab');
     const projectCards = document.querySelectorAll('.project-card');
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            button.classList.add('active');
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked tab
+            tab.classList.add('active');
 
-            const filter = button.dataset.filter;
+            const category = tab.getAttribute('data-category');
 
-            // Filter projects
+            // Show/hide projects based on category
             projectCards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
-                    card.style.display = 'block';
+                if (category === 'all') {
+                    card.classList.add('show');
                 } else {
-                    card.style.display = 'none';
+                    if (card.getAttribute('data-category') === category) {
+                        card.classList.add('show');
+                    } else {
+                        card.classList.remove('show');
+                    }
                 }
             });
         });

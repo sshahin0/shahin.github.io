@@ -1618,4 +1618,55 @@ button:hover ~ .cursor-follower {
     .project-thumbnail {
         height: 180px;
     }
+}
+
+/* Project Category Tabs */
+.project-categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.category-tab {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: #f0f0f0;
+    color: #666;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.category-tab:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.category-tab.active {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.project-card {
+    display: none; /* Hide all cards by default */
+}
+
+.project-card.show {
+    display: flex; /* Show cards with 'show' class */
+}
+
+/* Responsive adjustments for project tabs */
+@media (max-width: 768px) {
+    .project-categories {
+        padding: 0 1rem;
+    }
+    
+    .category-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
 } 
