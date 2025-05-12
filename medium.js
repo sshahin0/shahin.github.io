@@ -3,12 +3,11 @@ const CONFIG = {
     MEDIUM_USERNAME: 'shahin.cse.sust',
     RSS2JSON_API_KEY: 'eh3420igjkzhtpfnfybwncw6g3vfybiqbtm04woc',
     MAX_POSTS: 100,
-    WORDS_PER_MINUTE: 200,
-    ANDROID_LIST_ID: '2f09c1a2e07e'
+    WORDS_PER_MINUTE: 200
 };
 
-// Medium RSS feed URL for Android list
-const MEDIUM_RSS_URL = `https://medium.com/@${CONFIG.MEDIUM_USERNAME}/list/android-${CONFIG.ANDROID_LIST_ID}`;
+// Medium RSS feed URL
+const MEDIUM_RSS_URL = `https://medium.com/feed/@${CONFIG.MEDIUM_USERNAME}`;
 
 // Function to fetch and parse Medium RSS feed
 async function fetchMediumPosts() {
@@ -18,7 +17,7 @@ async function fetchMediumPosts() {
         const data = await response.json();
         
         if (data.status === 'ok') {
-            console.log('Fetched Android posts:', data.items.length);
+            console.log('Fetched Medium posts:', data.items.length);
             displayMediumPosts(data.items);
             setupCategoryFilters();
         } else {
@@ -173,7 +172,7 @@ function displayError() {
     blogGrid.innerHTML = `
         <div class="error-message">
             <p>Unable to load Medium posts at the moment.</p>
-            <p>Please visit my <a href="https://medium.com/@${CONFIG.MEDIUM_USERNAME}/list/android-${CONFIG.ANDROID_LIST_ID}" target="_blank">Android Development articles</a> directly.</p>
+            <p>Please visit my <a href="https://medium.com/@${CONFIG.MEDIUM_USERNAME}" target="_blank">Medium articles</a> directly.</p>
             <button onclick="fetchMediumPosts()" class="retry-button">
                 <i class="fas fa-sync-alt"></i> Retry
             </button>
